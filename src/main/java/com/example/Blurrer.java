@@ -1,23 +1,37 @@
 package com.example;
 
 public class Blurrer {
-  public static final int RED_MASK   = 0x00ff0000;
-  public static final int GREEN_MASK = 0x0000ff00;
-  public static final int BLUE_MASK  = 0x000000ff;
+  private static final int RED_MASK   = 0x00ff0000;
+  private static final int GREEN_MASK = 0x0000ff00;
+  private static final int BLUE_MASK  = 0x000000ff;
 
   private int blurRadius;
   private int blurKernelSize;
   private int[] blurKernel;
   private int[][] blurMult;
 
-  public int[] pixels;
+  private int[] pixels;
 
   /** Actual dimensions of pixels array, taking into account the 2x setting. */
-  public int pixelWidth;
-  public int pixelHeight;
+  private int pixelWidth;
+  private int pixelHeight;
+  private float rParam;
 
   public String toString() {
-    return "";
+    StringBuilder sb = new StringBuilder();
+    sb.append("rParam: ").append(rParam).append(System.lineSeparator());
+    sb.append("blurRadius: ").append(blurRadius).append(System.lineSeparator());
+    sb.append("blurKernelSize: ").append(blurKernelSize).append(System.lineSeparator());
+    sb.append("blurKernel.length: ").append(blurKernel.length).append(System.lineSeparator());
+    sb.append("blurMult.length: ").append(blurMult.length).append(System.lineSeparator());
+    sb.append("pixelWidth: ").append(pixelWidth).append(System.lineSeparator());
+    sb.append("pixelHeight: ").append(pixelHeight).append(System.lineSeparator());
+    if (pixels != null) {
+      sb.append("pixels.length: ").append(pixels.length).append(System.lineSeparator());
+    } else {
+      sb.append("pixels: null");
+    }
+    return sb.toString();
  }
 
   public void dumpBlurKernel() {
@@ -25,6 +39,7 @@ public class Blurrer {
   }
 
   public void buildBlurKernel(float r) {
+      rParam = r;
       int radius = (int) (r * 3.5f);
       if (radius < 1) radius = 1;
       if (radius > 248) radius = 248;
