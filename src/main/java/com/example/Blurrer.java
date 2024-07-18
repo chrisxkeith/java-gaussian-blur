@@ -1,7 +1,5 @@
 package com.example;
 
-// import javax.json.Json;
-
 public class Blurrer {
   public static final int RED_MASK   = 0x00ff0000;
   public static final int GREEN_MASK = 0x0000ff00;
@@ -18,8 +16,12 @@ public class Blurrer {
   public int pixelWidth;
   public int pixelHeight;
 
+  public String toString() {
+    return "";
+ }
+
   public void dumpBlurKernel() {
-      System.out.println("Hello, World!");
+      System.out.println(toString());
   }
 
   public void buildBlurKernel(float r) {
