@@ -17,21 +17,33 @@ public class Blurrer {
   private int pixelHeight;
   private float rParam;
 
+  private void dumpArray(StringBuilder sb, int[] array) {
+    for (int i = 0; i < array.length; i++) {
+      sb.append(array[i]).append(",");
+      if ((i + 1) % 10 == 0) {
+        sb.append(System.lineSeparator());
+      }
+    }
+    sb.append(System.lineSeparator());
+  }
+
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("rParam: ").append(rParam).append(System.lineSeparator());
     sb.append("blurRadius: ").append(blurRadius).append(System.lineSeparator());
-    sb.append("blurKernelSize: ").append(blurKernelSize).append(System.lineSeparator());
     sb.append("blurKernel.length: ").append(blurKernel.length).append(System.lineSeparator());
+    sb.append("blurKernel: ").append(System.lineSeparator());
+    dumpArray(sb, blurKernel);
     sb.append("blurMult.length: ").append(blurMult.length).append(System.lineSeparator());
-    sb.append("pixelWidth: ").append(pixelWidth).append(System.lineSeparator());
+    sb.append("blurMult[0].length: ").append(blurMult[0].length).append(System.lineSeparator());
+/*    sb.append("pixelWidth: ").append(pixelWidth).append(System.lineSeparator());
     sb.append("pixelHeight: ").append(pixelHeight).append(System.lineSeparator());
     if (pixels != null) {
       sb.append("pixels.length: ").append(pixels.length).append(System.lineSeparator());
     } else {
       sb.append("pixels: null");
     }
-    return sb.toString();
+*/    return sb.toString();
  }
 
   public void dumpBlurKernel() {
